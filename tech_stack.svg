@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 140" width="100%" height="100%" style="background: transparent;">
+  <defs>
+    <!-- Drop Shadows for 3D Icon Cards -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.45" />
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Vite Logo Gradient -->
+    <linearGradient id="viteTriangle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#411b9b" />
+      <stop offset="100%" stop-color="#bd34fe" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .desc-text {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      font-size: 14px;
+      fill: #94a3b8;
+      text-anchor: middle;
+      font-weight: 500;
+    }
+  </style>
+
+  <!-- Card 1: React -->
+  <g transform="translate(145, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#1e222b" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+    <ellipse cx="32" cy="32" rx="20" ry="7.5" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(30, 32, 32)" />
+    <ellipse cx="32" cy="32" rx="20" ry="7.5" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(90, 32, 32)" />
+    <ellipse cx="32" cy="32" rx="20" ry="7.5" fill="none" stroke="#00d8ff" stroke-width="1.5" transform="rotate(150, 32, 32)" />
+    <circle cx="32" cy="32" r="3" fill="#00d8ff" />
+  </g>
+
+  <!-- Card 2: JavaScript -->
+  <g transform="translate(230, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#f7df1e" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+    <text x="52" y="52" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="900" text-anchor="end">JS</text>
+  </g>
+
+  <!-- Card 3: Node.js -->
+  <g transform="translate(315, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#1e222b" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+    <path d="M32 18 L44.1 25 L44.1 39 L32 46 L19.9 39 L19.9 25 Z" fill="none" stroke="#339933" stroke-width="2.5" stroke-linejoin="round" />
+    <path d="M32 23 L39.2 27 L39.2 37 L32 41 L24.8 37 L24.8 27 Z" fill="#339933" />
+  </g>
+
+  <!-- Card 4: Vite -->
+  <g transform="translate(400, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#1e222b" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+    <polygon points="18,24 46,24 32,48" fill="url(#viteTriangle)" />
+    <polygon points="30,16 38,16 33,29 39,29 29,48 32,33 26,33" fill="#ffdf00" />
+  </g>
+
+  <!-- Card 5: Express -->
+  <g transform="translate(485, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#1e222b" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+    <text x="32" y="41" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="900" letter-spacing="-1" text-anchor="middle">ex</text>
+  </g>
+
+  <!-- Card 6: CSS / Styling -->
+  <g transform="translate(570, 12)" filter="url(#cardShadow)">
+    <rect width="64" height="64" rx="16" fill="#1e222b" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+    <!-- Double Wave icon -->
+    <path d="M20 28 C24 24, 28 24, 32 28 C36 32, 40 32, 44 28" fill="none" stroke="#06b6d4" stroke-width="3.5" stroke-linecap="round" />
+    <path d="M20 38 C24 34, 28 34, 32 38 C36 42, 40 42, 44 38" fill="none" stroke="#06b6d4" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Description Text Lines -->
+  <text x="400" y="102" class="desc-text">A production-ready, full-stack media extraction platform designed for fast, high-quality downloads and stream conversions.</text>
+  <text x="400" y="123" class="desc-text">Powered by <tspan fill="#6366f1" font-weight="bold">yt-dlp</tspan> with Node JS signature solvers and <tspan fill="#ec4899" font-weight="bold">ffmpeg</tspan> stream muxers.</text>
+</svg>

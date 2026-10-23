@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "StreamDrop - Media Downloader",
+  "version": "1.0.0",
+  "description": "One-click video and audio downloader for YouTube, TikTok, X, and more powered by StreamDrop.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "notifications"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "quick-download-video": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "Alt+Shift+D"
+      },
+      "description": "Download active tab video in Maximum HD"
+    },
+    "quick-download-audio": {
+      "suggested_key": {
+        "default": "Alt+Shift+A",
+        "mac": "Alt+Shift+A"
+      },
+      "description": "Download active tab audio as MP3 (320kbps)"
+    },
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "Open StreamDrop popup"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Download with StreamDrop",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*",
+        "https://*.tiktok.com/*",
+        "https://*.twitter.com/*",
+        "https://*.x.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamDrop</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="extension-container">
+    <!-- Header -->
+    <header class="ext-header">
+      <div class="ext-logo">
+        <svg viewBox="0 0 40 40" width="24" height="24" fill="none">
+          <rect width="40" height="40" rx="10" fill="url(#pop-grad)" />
+          <path d="M10 27C13 28.5 16 28.5 20 28.5C24 28.5 27 28.5 30 27" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M20 10V22.5M20 22.5L14.5 17M20 22.5L25.5 17" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <defs>
+            <linearGradient id="pop-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e11d48" />
+              <stop offset="100%" stop-color="#f43f5e" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Stream<span class="accent">Drop</span></span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span class="status-indicator online" id="server-status">Checking...</span>
+        <button class="icon-btn" id="btn-toggle-settings" title="Server Settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Settings Drawer (Collapsible) -->
+    <div class="settings-drawer" id="settings-drawer" style="display: none;">
+      <div class="setting-field">
+        <label>Backend API URL</label>
+        <input type="text" id="input-api-url" placeholder="http://localhost:5000/api">
+      </div>
+      <div class="setting-field">
+        <label>Web App URL</label>
+        <input type="text" id="input-client-url" placeholder="http://localhost:5173">
+      </div>
+      <div class="preset-row">
+        <button class="btn-chip" id="preset-cloud">Public Cloud</button>
+        <button class="btn-chip" id="preset-local">Localhost</button>
+      </div>
+
+      <!-- Custom Shortcut Customizer -->
+      <div class="setting-field" style="margin-top: 4px;">
+        <label>Video Shortcut (Click & Press Keys)</label>
+        <input type="text" id="input-shortcut-video" placeholder="Alt+Shift+D" readonly style="cursor: pointer; text-align: center; font-weight: 600;" title="Click then press your custom keys">
+      </div>
+      <div class="setting-field">
+        <label>Audio Shortcut (Click & Press Keys)</label>
+        <input type="text" id="input-shortcut-audio" placeholder="Alt+Shift+A" readonly style="cursor: pointer; text-align: center; font-weight: 600;" title="Click then press your custom keys">
+      </div>
+
+      <button class="link-btn" id="btn-open-browser-shortcuts" type="button" style="text-align: center; margin: 2px 0 4px; font-size: 0.68rem;">
+        ⚙️ Open Chrome Shortcuts Page
+      </button>
+
+      <button class="btn btn-primary" id="btn-save-settings" style="margin-top: 4px;">
+        Save Settings
+      </button>
+    </div>
+
+    <!-- Offline Alert Banner -->
+    <div class="offline-banner" id="offline-banner" style="display: none;">
+      <span>Server offline</span>
+      <button class="link-btn" id="btn-open-settings-hint">Configure ⚙️</button>
+    </div>
+
+    <!-- Detected Tab Info -->
+    <div class="media-box" id="media-box">
+      <div class="media-loading" id="media-loading">Checking current tab...</div>
+      <div class="media-details" id="media-details" style="display: none;">
+        <p class="media-title" id="page-title">Detecting...</p>
+        <p class="media-url" id="page-url"></p>
+      </div>
+    </div>
+
+    <!-- Quality Selection Card -->
+    <div class="quality-card" id="quality-card">
+      <div class="format-type-tabs">
+        <button class="type-tab active" id="tab-video" type="button">🎬 Video (MP4)</button>
+        <button class="type-tab" id="tab-audio" type="button">🎵 Audio (MP3)</button>
+      </div>
+
+      <div class="quality-select-wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label for="quality-select" class="quality-label">Select Resolution / Quality</label>
+          <span class="quality-loader" id="quality-loader" style="display: none;">Scanning formats...</span>
+        </div>
+        <select id="quality-select" class="quality-dropdown">
+          <option value="best">🌟 Maximum Quality (Auto 4K/1080p)</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-download" id="btn-start-download">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span id="btn-download-text">Download Selected Quality</span>
+      </button>
+    </div>
+
+    <!-- Secondary Actions -->
+    <div class="actions-list" id="actions-list">
+      <button class="btn btn-secondary" id="btn-open-web">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        Open in Web App (Trimmer & Clip)
+      </button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-box" id="progress-box" style="display: none;">
+      <div class="progress-info">
+        <span id="progress-status">Downloading...</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <button class="btn btn-save" id="btn-save-file" style="display: none;">
+        Download Ready - Save File
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ext-footer">
+      <span id="active-server-label">Connected: Localhost</span>
+      <div class="shortcuts-hint">
+        ⚡ Shortcuts: <kbd>Alt+Shift+D</kbd> Video • <kbd>Alt+Shift+A</kbd> Audio
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
