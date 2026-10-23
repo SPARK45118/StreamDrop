@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./banner.svg" alt="StreamDrop Banner" width="100%">
+  <img src="./streamdrop-banner.svg" alt="StreamDrop Banner" width="100%">
 </p>
 
 <p align="center">
-  <img src="./tech_stack.svg" alt="StreamDrop Tech Stack" width="100%">
+  <img src="./streamdrop-tech-stack.svg" alt="StreamDrop Tech Stack" width="100%">
 </p>
 
 ---
