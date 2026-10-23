@@ -13,7 +13,6 @@ function AppContent() {
   // Settings Modal state
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const [isDevInfoOpen, setIsDevInfoOpen] = useState(false);
 
   // Notifications state
   const [notifications, setNotifications] = useState([]);
@@ -129,14 +128,6 @@ function AppContent() {
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun /> : <Moon />}
-          </button>
-          <button 
-            className="icon-btn" 
-            onClick={() => setIsDevInfoOpen(true)}
-            title="About Developer"
-            aria-label="Toggle Developer Information"
-          >
-            <Info />
           </button>
         </div>
       </header>
@@ -298,68 +289,6 @@ function AppContent() {
           </div>
         )}
 
-        {/* Developer Info Dialog Modal */}
-        {isDevInfoOpen && (
-          <div className="modal-overlay" onClick={() => setIsDevInfoOpen(false)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '450px' }}>
-              <div className="modal-header">
-                <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Info size={22} /> About Developer
-                </h2>
-                <button className="icon-btn" onClick={() => setIsDevInfoOpen(false)}>
-                  <X />
-                </button>
-              </div>
-              <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem', padding: '1rem 0' }}>
-                <div className="dev-avatar" style={{
-                  background: 'var(--primary-gradient)',
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#fff',
-                  fontSize: '2rem',
-                  fontWeight: '800',
-                  boxShadow: 'var(--shadow-md)',
-                  fontFamily: 'var(--font-display)'
-                }}>
-                  D
-                </div>
-                
-                <div style={{ textAlign: 'center' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)' }}>Dhruv</h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                    Full Stack & Game Developer
-                  </p>
-                </div>
-
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--panel-border)', paddingBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>Name</span>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-main)', fontWeight: 700 }}>Dhruv</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--panel-border)', paddingBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>Role</span>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-main)', fontWeight: 700 }}>Full Stack & Game Developer</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>Gmail / Email</span>
-                    <a href="mailto:xboxing098@gmail.com" style={{ fontSize: '0.85rem', color: 'var(--input-focus-border)', textDecoration: 'none', fontWeight: 700 }}>
-                      xboxing098@gmail.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
-                <button className="btn-primary" onClick={() => setIsDevInfoOpen(false)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </main>
 
       {/* Notifications container (toasts) */}

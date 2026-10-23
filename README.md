@@ -91,21 +91,4 @@ StreamDrop/
 | `/api/download/file/:jobId` | `GET` | *None* | Downloads completed file and triggers automated server cleanup |
 | `/api/download/cancel/:jobId` | `POST` | *None* | Kills active processes and sweeps temporary chunks |
 
----
-
-## 👨‍💻 Developed By
-
-<div align="center">
-
-  ### **Dhruv**
-  *Full Stack & Game Developer*
-
-  > "Turning complex backend logic and wireframes into elegant, high-performance digital experiences." 🚀
-
-  <p align="center">
-    <a href="mailto:xboxing098@gmail.com">
-      <img src="./btn_email.svg" width="200" alt="Email Dhruv"/>
-    </a>
-  </p>
-</div>
 
