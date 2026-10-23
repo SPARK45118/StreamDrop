@@ -68,5 +68,5 @@
 
   <!-- Description Text Lines -->
   <text x="400" y="102" class="desc-text">A production-ready, full-stack media extraction platform designed for fast, high-quality downloads and stream conversions.</text>
-  <text x="400" y="123" class="desc-text">Powered by <tspan fill="#6366f1" font-weight="bold">yt-dlp</tspan> with Node JS signature solvers and <tspan fill="#ec4899" font-weight="bold">ffmpeg</tspan> stream muxers.</text>
+  <text x="400" y="123" class="desc-text">Powered by <tspan fill="#e11d48" font-weight="bold">yt-dlp</tspan> with Node JS signature solvers and <tspan fill="#f43f5e" font-weight="bold">ffmpeg</tspan> stream muxers.</text>
 </svg>

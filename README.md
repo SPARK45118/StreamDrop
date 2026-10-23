@@ -1,41 +1,47 @@
 <p align="center">
-  <img src="./banner.svg" alt="CloudClip Banner" width="100%">
+  <img src="./banner.svg" alt="StreamDrop Banner" width="100%">
 </p>
 
 <p align="center">
-  <img src="./tech_stack.svg" alt="CloudClip Tech Stack" width="100%">
+  <img src="./tech_stack.svg" alt="StreamDrop Tech Stack" width="100%">
 </p>
 
 ---
 
 ## 🚀 Key Features
 
-*   **💎 Premium UI & Design**: Built with a curating Light Theme as default, featuring smooth 3D parallax hover cards, high-contrast layouts, and floating background composition auras.
-*   **👨‍💻 Developer Integration Modal**: Seamlessly integrated profile information modal showcasing developer details (Name, Email, LinkedIn, and GitHub) accessible directly from the header actions.
-*   **⚡ Node-Powered YouTube Signature Bypass**: Integrated with specific `node` JS-runtimes and remote components directly solving complex YouTube challenge checks.
-*   **🛠️ Background Stream Merging (Muxer)**: Initiates separate high-definition video and audio streaming queues, merging them on-the-fly using background child processes.
-*   **🔒 Security & Privacy-First**: Includes automatic backend temp folder sweepers running every 10 minutes, rate limiting, and parameter verification.
-*   **⚙️ Custom User Configs**: Retains default download parameters, history logs, and language selections inside the local storage cache.
+*   **💎 Modern Rose-Red Aesthetic**: Designed with an ultra-clean, high-contrast dark theme and subtle glassmorphic glow effects.
+*   **🧩 Chrome / Edge Extension (Manifest V3)**: Companion browser extension with YouTube DOM button injection, custom keyboard shortcut recorder, and in-popup quality selector.
+*   **🌟 4K UHD & 1080p Stream Muxing**: Automatically extracts separate high-resolution DASH video & audio streams and merges them losslessly with FFmpeg (`--audio-quality 0`).
+*   **⚡ Real-Time Progress Engine (SSE)**: Streams download progress, transfer speeds, and FFmpeg muxing states live via Server-Sent Events with sub-second latency.
+*   **✂️ Video Trimming & Audio Extraction**: Clip precise sections (*start-end) and extract audiophile 320kbps MP3s.
+*   **🔒 Security & Privacy-First**: Automated temp sweepers running every 10 minutes, rate limiting, and parameter validation.
 
 ---
 
 ## 📂 Project Structure
 
 ```
-CloudClip/
+StreamDrop/
 ├── client/                 # React frontend (Vite environment)
 │   ├── src/
-│   │   ├── components/     # Layout buttons & components
+│   │   ├── components/     # Layout buttons & modals
 │   │   ├── context/        # ThemeContext controller
 │   │   ├── pages/          # Downloader core rendering
-│   │   └── index.css       # Layout styles & 3D variables
+│   │   └── index.css       # Light red palette & styles
 │
 ├── server/                 # Express API backend
 │   ├── src/
-│   │   ├── config/         # Environment variables loaders
+│   │   ├── config/         # Environment variable loaders
 │   │   ├── middleware/     # Rate limiter & security hooks
 │   │   ├── routes/         # Express endpoint maps
 │   │   └── services/       # ytDlp wrappers & jobs controllers
+│
+├── extension/              # Chrome / Edge Browser Extension (Manifest V3)
+│   ├── background.js       # Background service worker & downloads
+│   ├── content.js          # In-page shortcut listener & DOM button injection
+│   ├── popup.html/js/css   # Extension popup with quality selector
+│   └── manifest.json       # Manifest V3 specification
 │
 ├── shared/                 # Config constants shared between modules
 └── tests/                  # Backend unit & integration test coverage
